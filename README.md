@@ -4,6 +4,7 @@ This project was created to make transcoding video files faster and easier.
 
 Note:
    In this guide, these tags will be used:
+
 	* `<PT:X>`: *Path to application X* (Use `which X` to know the path).
 	* `<PTR>`: *Path to git repository*
 	* `<PTH>`: *Path to home directory*
@@ -26,6 +27,7 @@ Before starting be sure all the requirement are fulfilled.
 ## 3. Configuration
 
 To setup a user specific configuration, copy the `config.json` as follow `<PTH>/.config/transcodewatcher.json`.
+
 This file will override the default configuration present in `config.json`.
 
 Here is the list of the configuration options.
@@ -58,7 +60,7 @@ Here is the list of the configuration options.
 	
    Path to the service log file.
    
-   *default*: Under the `logs` directory, in script directory, in `activity.log.DATE` file. ('./logs/activity.log.DATE')
+   *default*: Under the `logs` directory, in script directory, in `activity.log.DATE` file. (`./logs/activity.log.DATE`)
    
    *note*: The date is added at the end of the file name.
 
