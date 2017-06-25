@@ -1,0 +1,25 @@
+{
+	"input_path": "",
+	"input_file": ["m4v", "mp4", "mkv"],
+	"output_path": "",
+	"move_path": "",
+	"log_output": "./activity.log",
+	"handbrake_log": "",
+	"progress_output": "",
+	"loop_timeout": 900000,
+	"change_timeout": 15000,
+	"concurrent": 1,
+	"handbrake_cli": "/usr/bin/HandBrakeCLI",
+	"transcoding": [
+		"--format", "av_mkv",
+		"--markers",
+		"--encoder", "x265",
+		"--encoder-preset", "medium",
+		"--quality", "20",
+		"--aencoder", "copy",
+		"--audio-lang-list", "und",
+		"--all-audio",
+		"--subtitle-lang-list", "und",
+		"--all-subtitles"
+	]
+}

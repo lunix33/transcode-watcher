@@ -1,0 +1,20 @@
+{
+	"name": "transcode-watcher",
+	"description": "Utility used to watch a folder for video transcoding with HandBrakeCLI.",
+	"version": "1.0.0",
+	"keywords": ["utils"],
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/lunix33/transcode-watcher"
+	},
+	"author": "Patrick Bergeron",
+	"contributors": [],
+	 "scripts":{
+		"start":"node main.js"
+	},
+	"dependencies": {
+		"glob": "*",
+		"minimist": "*"
+	}
+}
