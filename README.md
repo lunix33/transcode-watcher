@@ -109,7 +109,7 @@ Here is the list of the configuration options.
    
    *default*: Use h265 encoder on medium preset with quality 20. Copy all audio and subtitles.
    
-   *note*: See [Handbrake CLI Guide](https://handbrake.fr/docs/en/latest/cli/cli-guide.html); the input and output parameters must be present.
+   *note*: See [Handbrake CLI Guide](https://handbrake.fr/docs/en/latest/cli/cli-guide.html); the input and output parameters must not be present.
 
 ## 4. How to run
 
