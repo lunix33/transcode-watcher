@@ -3,6 +3,7 @@
 This project was created to make transcoding video files faster and easier.
 Note:
 	In this guide, these tags will be used:
+
 		* `<PT:X>`: *Path to application X* (Use `which X` to know the path).
 		* `<PTR>`: *Path to git repository*
 		* `<PTH>`: *Path to home directory*
@@ -12,11 +13,13 @@ Note:
 * Node JS
 * HandBrakeCLI
 * Linux
+	
 	If I receive enough request (or if someone submit a pull request) I could try to make it compatible with Windows.
 
 ## 2. How to install
 
 Before starting be sure all the requirement are fulfilled.
+
 1. Clone the repository.
 2. Within a terminal, navigate to the root of the repository and run `npm install`.
 3. Set your configuration. (see section 3)
@@ -29,41 +32,64 @@ This file will override the default configuration present in config.json.
 Here is the list of the configuration options.
 
 **input_path**:
+	
 	The path to listen for input files.
 	note: This parameter is required!
+
 **input_file**:
+	
 	The list of extension to catch.
 	default: Listen for m4v, mp4 and mkv video files.
+
 **output_path**:
+	
 	Path where the final video file is to be outputed.
 	note: This parameter is required!
+
 **move_path**:
+	
 	Path where the original video file is moved for safe keeping.
 	default: Delete on completion.
+
 **log_output**:
+	
 	Path to the service log file.
 	default: Under the `logs` directory, in script directory, in `activity.log.DATE` file. ('./logs/activity.log.DATE')
 	note: The date is added at the end of the file name.
+
 **handbrake_log**:
+	
 	Path to the directory with handbrake logs.
 	default: No handbrake log.
 	note: One log file per transcoding task will be created.
+
 **progress_output**:
+
 	Path where to output current progression.
 	default: No transcode progress output.
+
 **loop_timeout**:
+
 	The intervale at which the input folder will be scanned. (in ms)
 	default: Every 15 minutes.
+
 **change_timeout**:
+
 	The intervale at which the file size will be recheck for change. (in ms)
 	default: After 15 seconds.
+
 **concurrent**:
+
 	The number of concurrent task running.
 	default: 1 task
+
 **handbrake_cli**:
+
 	The path to the HandBrakeCLI bin.
 	default: /usr/bin/HandBrakeCLI
+
 **transcoding**:
+
 	The Handbrake transcoding parameters.
 	default: Use h265 encoder on medium preset with quality 20. Copy all audio and subtitles.
 	note: See `https://handbrake.fr/docs/en/latest/cli/cli-guide.html`; the input and output parameters must be present.
@@ -109,5 +135,6 @@ exemples:
 ### 4.2 Arguments
 
 **-c**: 
+
 	The path to a non-standard configuration file.
 	*note: tilde (~) can be use to refer to the current user home directory.*
