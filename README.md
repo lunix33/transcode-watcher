@@ -60,7 +60,7 @@ Here is the list of the configuration options.
 	
    Path to the service log file.
    
-   *default*: Under the `logs` directory, in script directory, in `activity.log.DATE` file. (`./logs/activity.log.DATE`)
+   *default*: Use `activity.log.DATE` file in script directory (`./activity.log.DATE`).
    
    *note*: The date is added at the end of the file name.
 

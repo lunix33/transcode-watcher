@@ -250,7 +250,7 @@ main(minimist(process.argv.slice(2)));
  *		default: Delete on completion.
  * @property {string} [log_output="./logs/activity.log"]
  *		Path to the service log file.
- *		default: Under the `logs` directory, in script directory, in `activity.log.DATE` file (`./logs/activity.log.DATE`).
+ *		default: Use `activity.log.DATE` file in script directory (`./activity.log.DATE`).
  *		note: The date is added at the end of the file name.
  * @property {string} [handbrake_log=""]
  *		Path to the directory with handbrake logs.
