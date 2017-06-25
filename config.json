@@ -3,7 +3,7 @@
 	"input_file": ["m4v", "mp4", "mkv"],
 	"output_path": "",
 	"move_path": "",
-	"log_output": "./activity.log",
+	"log_output": "./logs/activity.log",
 	"handbrake_log": "",
 	"progress_output": "",
 	"loop_timeout": 900000,

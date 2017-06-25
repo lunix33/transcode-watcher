@@ -28,6 +28,12 @@ process.on('uncaughtException', (err) => {
 	log(`Unexpected error.${EOL}` +
 			`Message: ${err.message}${EOL}` +
 			`Stack: ${EOL}${err.stack}`);
+	log('Service terminated.');
+});
+
+process.on('SIGINT', () => {
+	log('Service terminated.');
+	process.exit();
 });
 
 /**
@@ -238,9 +244,9 @@ main(minimist(process.argv.slice(2)));
  * @property {string} [move_path=""]
  *		Path where the original video file is moved for safe keeping.
  *		default: Delete on completion.
- * @property {string} [log_output="./activity.log"]
+ * @property {string} [log_output="./logs/activity.log"]
  *		Path to the service log file.
- *		default: In script directory, within `activity.log` file.
+ *		default: Under the `logs` directory, in script directory, in `activity.log` file.
  *		note: The date is added at the end of the file name.
  * @property {string} [handbrake_log=""]
  *		Path to the directory with handbrake logs. (one per file)
