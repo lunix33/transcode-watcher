@@ -250,11 +250,12 @@ main(minimist(process.argv.slice(2)));
  *		default: Delete on completion.
  * @property {string} [log_output="./logs/activity.log"]
  *		Path to the service log file.
- *		default: Under the `logs` directory, in script directory, in `activity.log` file.
+ *		default: Under the `logs` directory, in script directory, in `activity.log.DATE` file (`./logs/activity.log.DATE`).
  *		note: The date is added at the end of the file name.
  * @property {string} [handbrake_log=""]
- *		Path to the directory with handbrake logs. (one per file)
+ *		Path to the directory with handbrake logs.
  *		default: No handbrake log.
+ *		note: One log file per transcoding task will be created.
  * @property {string} [progress_output=""]
  *		Path where to output current progression.
  *		default: No transcode progress output.
@@ -273,6 +274,7 @@ main(minimist(process.argv.slice(2)));
  * @property {string[]}  transcoding
  *		The Handbrake transcoding parameters.
  *		default: Use h265 encoder on medium preset with quality 20. Copy all audio and subtitles.
+ *		note: see https://handbrake.fr/docs/en/latest/cli/cli-guide.html; The input and output parameters must not be present.
  */
 
 /**
