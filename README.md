@@ -5,15 +5,16 @@ This project was created to make transcoding video files faster and easier.
 Note:
    In this guide, these tags will be used:
 
-	* `<PT:X>`: *Path to application X* (Use `which X` to know the path).
-	* `<PTR>`: *Path to git repository*
-	* `<PTH>`: *Path to home directory*
+   * `<PT:X>`: *Path to application X* (Use `which X` to know the path).
+   * `<PTR>`: *Path to git repository*
+   * `<PTH>`: *Path to home directory*
 
 ## 1. Requirement
 
-* Node JS
-* HandBrakeCLI
+* [Node JS](https://nodejs.org/en/download/)
+* [HandBrakeCLI](https://handbrake.fr/downloads.php)
 * Linux
+   
    If I receive enough request (or if someone submit a pull request) I could try to make it compatible with Windows.
 
 ## 2. How to install
@@ -108,7 +109,7 @@ Here is the list of the configuration options.
    
    *default*: Use h265 encoder on medium preset with quality 20. Copy all audio and subtitles.
    
-   *note*: See [https://handbrake.fr/docs/en/latest/cli/cli-guide.html]; the input and output parameters must be present.
+   *note*: See [Handbrake CLI Guide](https://handbrake.fr/docs/en/latest/cli/cli-guide.html); the input and output parameters must not be present.
 
 ## 4. How to run
 
@@ -122,8 +123,8 @@ Optional arguments can be added (see 4.2).
 
 ### 4.1 Run on startup.
 
-If you want to run the service as soon as the computer is booting and if you're using a Linux distribution using systemd, you can use the `systemd.service` to run the service as a Linux service.
-Simply copy the file into `/etc/systemd/system` and edit it to be sure the file correctly refect your setup.
+If you want to run the service as soon as the computer is booting and if you're using a Linux distribution using systemd, you can use the `transcodewatcher.service` to run the service as a Linux service.
+Simply copy the file into `/etc/systemd/system/` and edit it to be sure the file correctly refect your setup.
 
 exemple:
 
@@ -136,6 +137,15 @@ exemple:
 ```
 
 While using this setup, the service will run as `root`, so be sure to put your configuration file at the right place (`/root/.config/`).
+From this point you'll be able to use all the regular systemctl commands:
+
+```
+(sudo -s)
+systemctl start transcodewatcher   # To start the service.
+systemctl stop transcodewatcher    # To stop the service
+systemctl restart transcodewatcher # To restart the service
+systemctl enable transcodewatcher  # Start on boot.
+```
 
 if your distribution dosen't use systemd, you could add your run comment into your crontab.
 And to have a better control over your cronjob, it might be intresting to run it in screen.
