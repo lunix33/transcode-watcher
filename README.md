@@ -12,7 +12,7 @@ Note:
 ## 1. Requirement
 
 * Node JS
-* HandBrakeCLI
+* [HandBrakeCLI](https://handbrake.fr/downloads.php)
 * Linux
    If I receive enough request (or if someone submit a pull request) I could try to make it compatible with Windows.
 
@@ -108,7 +108,7 @@ Here is the list of the configuration options.
    
    *default*: Use h265 encoder on medium preset with quality 20. Copy all audio and subtitles.
    
-   *note*: See [https://handbrake.fr/docs/en/latest/cli/cli-guide.html]; the input and output parameters must be present.
+   *note*: See [Handbrake CLI Guide](https://handbrake.fr/docs/en/latest/cli/cli-guide.html); the input and output parameters must be present.
 
 ## 4. How to run
 
