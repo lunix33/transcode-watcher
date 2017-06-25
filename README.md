@@ -11,9 +11,10 @@ Note:
 
 ## 1. Requirement
 
-* Node JS
+* [Node JS](https://nodejs.org/en/download/)
 * [HandBrakeCLI](https://handbrake.fr/downloads.php)
 * Linux
+   
    If I receive enough request (or if someone submit a pull request) I could try to make it compatible with Windows.
 
 ## 2. How to install
