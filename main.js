@@ -180,7 +180,7 @@ function exec(file) {
 	const move = (conf.move_path) ? path.join(conf.move_path, filename) : null;
 	
 	// Run handbrake
-	const log = (conf.handbrake_log) ?
+	const hblog = (conf.handbrake_log) ?
 		fs.openSync(path.join(conf.handbrake_log, `${filename.log}`), 'w') : null;
 	
 	const output = path.join(conf.output_path, filename);
@@ -202,16 +202,16 @@ function exec(file) {
 	
 	// Write details + log to log file.
 	child.stderr.on('data', (data) => {
-		if (log)
-			fs.writeSync(log, data.toString().replace('\r', EOL));
+		if (hblog)
+			fs.writeSync(hblog, data.toString().replace('\r', EOL));
 	});
 	
 	// Clean, close logs and continue.
 	child.on('close', (code) => {
 		// Closing handbrake logs.
-		if (log) {
-			fs.writeSync(log, `Finished with error code: ${code}`);
-			fs.closeSync(log);
+		if (hblog) {
+			fs.writeSync(hblog, `Finished with error code: ${code}`);
+			fs.closeSync(hblog);
 		}
 		
 		// Remove progress file.
