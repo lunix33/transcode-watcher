@@ -165,3 +165,8 @@ exemples:
    The path to a non-standard configuration file.
    
    *note: tilde (~) can be use to refer to the current user home directory.*
+
+**-f**:
+   
+	 If the log file is enable but fail to open, the service will continue with only the screen log.
+

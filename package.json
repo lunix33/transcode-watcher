@@ -10,7 +10,7 @@
 	},
 	"author": "Patrick Bergeron",
 	"contributors": [],
-	 "scripts":{
+	"scripts":{
 		"start":"node main.js"
 	},
 	"dependencies": {

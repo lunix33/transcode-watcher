@@ -29,6 +29,7 @@ process.on('uncaughtException', (err) => {
 			`Message: ${err.message}${EOL}` +
 			`Stack: ${EOL}${err.stack}`);
 	log('Service terminated.');
+	process.exit(1);
 });
 
 /**
@@ -37,7 +38,7 @@ process.on('uncaughtException', (err) => {
 process.on('SIGINT', () => {
 	log('Service terminated.');
 	fs.closeSync(log_descriptor);
-	process.exit();
+	process.exit(0);
 });
 
 /**
@@ -48,20 +49,41 @@ process.on('SIGINT', () => {
 function main(args) {
 	process.chdir(__dirname);
 	
+	// Screen log delimiter
+	let time = (new Date()).toLocaleString();
+	log(`---- ---> ${time} <--- -----`);
+
 	// Load configuration.
 	conf = loadConfig(args.c);
 	
 	// Open log file.
-	if (conf.log_output) {
-		let date = new Date();
-		let dateappend = `${
-			date.getFullYear()}-${date.getMonth()}-${date.getDate()}.${
-			date.getHours()}-${date.getMinutes()}-${date.getSeconds()}`;
-		log_descriptor = fs.openSync(`${conf.log_output}.${dateappend}`, 'w');
+	try {
+		if (conf.log_output) {
+			log('Opening log file...');
+			let date = new Date();
+			let dateappend = `${
+				date.getFullYear()}-${date.getMonth()}-${date.getDate()}.${
+				date.getHours()}-${date.getMinutes()}-${date.getSeconds()}`;
+			log_descriptor = fs.openSync(`${conf.log_output}.${dateappend}`, 'w');
+		} else
+			log('Screen log only.');
+	}
+	
+	// Catch log file opening error.
+	catch (err) {
+		if (args.f) {
+			log_descriptor = null;
+			log('Failed to open log file, continue with screen log only.');
+		}
+		
+		// Rethrow the error for execution error logging.
+		else
+			throw err;
 	}
 	
 	// Run
 	log("Service ready...");
+	
     loop();
 }
 
@@ -81,7 +103,9 @@ function loadConfig(location) {
 			null;
 			
 	// Load config file.
+	log(`Default configuration: ${def}`);
 	let conf = require(def);
+	log(`Custom configuration: ${location}`);
 	let userConf = (location) ? require(location) : {};
 	
 	// Merging configurations.
@@ -283,4 +307,6 @@ main(minimist(process.argv.slice(2)));
  * @property {string} [c]
  *		The path to a non-standard configuration file.
  *		note: tilde (~) can be use to refer to the current user home directory.
+ * @property {boolean} [f]
+ *		If the log file is enable but fail to open, the service will continue with only the screen log.
  */
