@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 /* global __dirname */
 
 const glob = require('glob');
@@ -181,7 +182,7 @@ function exec(file) {
 	
 	// Run handbrake
 	const hblog = (conf.handbrake_log) ?
-		fs.openSync(path.join(conf.handbrake_log, `${filename.log}`), 'w') : null;
+		fs.openSync(path.join(conf.handbrake_log, `${filename}.log`), 'w') : null;
 	
 	const output = path.join(conf.output_path, filename);
 	const args = [
