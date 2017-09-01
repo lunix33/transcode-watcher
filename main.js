@@ -143,6 +143,12 @@ function loop() {
 						}	
 					}
 					
+					// No transcoding left, wait for loop.
+					if (files.length === 0) {
+						log('All files sizes changed, items will be processed on next loop. Waiting...');
+						setTimeout(loop, conf.loop_timeout);
+					}
+					
 					// Run transcode.
 					for (let i = 0; i < conf.concurrent; i++) {
 						if (files.length > 0) {

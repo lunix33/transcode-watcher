@@ -1,3 +1,5 @@
+*Still a work in progress*
+
 # Transcode Watcher
 
 This project was created to make transcoding video files faster and easier.
