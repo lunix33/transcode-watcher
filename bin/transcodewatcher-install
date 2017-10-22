@@ -1,0 +1,56 @@
+#!/bin/bash
+
+cwd="$(cd "$(dirname "$0")/.."; pwd -P)"
+
+# Validate dependencies are installed.
+if [ "$(which node)" != "" ] && [ "$(which npm)" != "" ]; then
+	echo "--> Installing the service components..."
+	cd $cwd
+
+	# Install "service" node modules.
+	echo "-> Installing node components."
+	if [ $USER == "root" ]; then
+		su $(logname) -c 'npm install'
+	else
+		npm install
+	fi
+
+	# Copy basic configuration if not already present.
+	if [ ! -f "$HOME/.config/transcodewatcher.json" ]; then
+		echo "-> Creating default user configuration."
+		cp -p config.json $HOME/.config/transcodewatcher.json
+	else
+		echo "-> ! User configuration already exists, skipping... !"
+	fi
+
+	# Install service if application is executed as root.
+	if [ $USER == "root" ]; then
+		# systemd is available and service will be installed.
+		if [ -d "/etc/systemd" ]; then
+			# Installing the service file in systemd.
+			echo "-> Installing systemd service. (Will not be enabled at boot!)"
+			outp="/etc/systemd/system/transcodewatcher.service"
+			sl="$cwd/bin/transcodewatcher"
+			sed "s#<exec>#$sl#" transcodewatcher.service > $outp
+			
+			# Link user configuration to root.
+			echo "-> Linking current user configuration as systemd service configuration."
+			mkdir -p /root/.config/
+			ln -s $HOME/.config/transcodewatcher.json /root/.config/transcodewatcher.json
+		
+		# Systemd is unavailable, display skip message.
+		else
+			echo "Systemd is not available on your system, skipping systemd service installation."
+		fi
+	
+	# User is not root, display skip message.
+	else
+		echo "!! IMPORTANT !!"
+		echo "The systemd service can't be installed, since you're not root."
+		echo "To install the systemd service you can re-run the script as root."
+	fi
+
+	echo "--> Installation process completed!"
+else
+	echo "Dependancies not fullfiled, be sure to have nodejs and npm installed."
+fi

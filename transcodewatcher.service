@@ -3,7 +3,7 @@ Description=Folder video transcoding service.
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/env node transcodewatcher
+ExecStart=<exec>
 
 [Install]
 WantedBy=multi-user.target

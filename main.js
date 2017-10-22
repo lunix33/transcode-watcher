@@ -38,7 +38,8 @@ process.on('uncaughtException', (err) => {
  */
 process.on('SIGINT', () => {
 	log('Service terminated.');
-	fs.closeSync(log_descriptor);
+	if (log_descriptor)
+		fs.closeSync(log_descriptor);
 	process.exit(0);
 });
 

@@ -1,0 +1,16 @@
+#!/bin/bash
+
+cwd="$(cd "$(dirname "$0")/.."; pwd -P)"
+
+# Validate dependencies are installed.
+if [ "$(which node)" != "" ] && [ "$(which npm)" != "" ]; then
+	# Verify if "service" is installed.
+	if [ ! -d "$cwd/node_modules" ]; then
+		echo "Please run \`$cwd/bin/transcodewatcher-install\`"
+		echo "Run the script as root to install the systemd service at the same time."
+	else
+		/usr/bin/env node $cwd/main.js $@
+	fi
+else
+	echo "Dependancies not fullfiled, be sure to have nodejs and npm installed."
+fi
