@@ -53,4 +53,5 @@ if [ "$(which node)" != "" ] && [ "$(which npm)" != "" ]; then
 	echo "--> Installation process completed!"
 else
 	echo "Dependancies not fullfiled, be sure to have nodejs and npm installed."
+	echo "Unable to complete installation."
 fi
