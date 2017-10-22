@@ -24,12 +24,14 @@ Note:
 Before starting be sure all the requirement are fulfilled.
 
 1. Clone the repository.
-2. Within a terminal, navigate to the root of the repository and run `npm install`.
+2. Within a terminal, navigate to the `bin` directory within the repository and run `transcodewatcher-install`.
 3. Set your configuration. (see section 3)
 
 ## 3. Configuration
 
-To setup a user specific configuration, copy the `config.json` as follow `<PTH>/.config/transcodewatcher.json`.
+To set your configuration, modify the `<PTH>/.config/transcodewatcher.json` file.
+
+If the file is not present after installation copy the `config.json` in `<PTH>/.config/transcodewatcher.json`.
 
 This file will override the default configuration present in `config.json`.
 
@@ -115,10 +117,10 @@ Here is the list of the configuration options.
 
 ## 4. How to run
 
-To run this node script, simply run from within the git repository:
+To run this node script, simply run the following command:
 
 ```
-node main.js [arguments]
+<PTR>/bin/transcodewatcher [arguments]
 ```
 
 Optional arguments can be added (see 4.2).
@@ -126,16 +128,17 @@ Optional arguments can be added (see 4.2).
 ### 4.1 Run on startup.
 
 If you want to run the service as soon as the computer is booting and if you're using a Linux distribution using systemd, you can use the `transcodewatcher.service` to run the service as a Linux service.
-Simply copy the file into `/etc/systemd/system/` and edit it to be sure the file correctly refect your setup.
+
+By running the installation process, the service is automatically registered, but if it isin't available you can copy the `<PTR>/transcodewatcher.service` file into `/etc/systemd/system/` and edit it to be sure the file correctly refect your setup.
 
 exemple:
 
 ```
 (Original)
-6 ExecStart=<PT:node> <PTR>/main.js
+6 ExecStart=<exec>
 --- --- ---
 (Modified)
-6 ExecStart=/usr/bin/node home/user/transcode-watcher/main.js
+6 ExecStart=home/user/transcode-watcher/bin/transcodewatcher
 ```
 
 While using this setup, the service will run as `root`, so be sure to put your configuration file at the right place (`/root/.config/`).
@@ -155,9 +158,9 @@ And to have a better control over your cronjob, it might be intresting to run it
 exemples:
 
 ```
-@reboot <PT:node> <PTR>/main.js
+@reboot <PTR>/bin/transcodewatcher
 --- --- ---
-@reboot <PT:screen> -dmS TranscodeWatcher <PT:node> <PTR>/main.js
+@reboot <PT:screen> -dmS TranscodeWatcher <PTR>/bin/transcodewatcher
 ```
 
 ### 4.2 Arguments
